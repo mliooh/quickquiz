@@ -1,0 +1,5 @@
+{
+    "question": "Question here?",
+    "options": ["Option A", "Option B", "Option C", "Option D"],
+    "answer": "Correct option from above"
+}
