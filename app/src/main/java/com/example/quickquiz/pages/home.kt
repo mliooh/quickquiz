@@ -25,8 +25,8 @@ import com.example.quickquiz.components.TextField
 @Composable
 
 fun HomeScreen(viewModel: QuizViewModel = viewModel()){
-    val quizCases = viewModel.quizCases.value
-    val isLoading = viewModel.isLoading.value
+   // val quizCases = viewModel.quizCases.value
+    //val isLoading = viewModel.isLoading.value
     //val uiState = viewModel.uiState.collectAsState().value
 
 
@@ -44,17 +44,20 @@ fun HomeScreen(viewModel: QuizViewModel = viewModel()){
             }
         )*/
 
-        Button(onClick = {viewModel.fetchQuestions()}) {
+       /* Button(onClick = {viewModel.fetchQuestions()}) {
             Text("Get Quiz")
         }
         Spacer(modifier = Modifier.height(16.dp))
 
         // Show loading spinner
         if (isLoading) {
-            CircularProgressIndicator()
-        }
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
+                CircularProgressIndicator()
+            }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        }*/
+
+       /* Spacer(modifier = Modifier.height(16.dp))
 
         if (quizCases.isNotEmpty()) {
             Text("Received ${quizCases.size} cases:")
@@ -63,6 +66,6 @@ fun HomeScreen(viewModel: QuizViewModel = viewModel()){
             }
         } else if(!isLoading) {
             Text("No quiz data yet.")
-        }
+        }*/
     }
 }

@@ -15,6 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.quickquiz.pages.HomeScreen
+import com.example.quickquiz.pages.TestScreen
+
 import com.example.quickquiz.ui.theme.QuickquizTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,9 +27,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             QuickquizTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background){
-                    HomeScreen(
-
-                    )
+                    TestScreen()
 
                 }
             }

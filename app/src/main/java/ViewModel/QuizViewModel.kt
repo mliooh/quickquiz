@@ -9,9 +9,26 @@ import okhttp3.RequestBody
 import android.util.Log
 import okhttp3.RequestBody.Companion.toRequestBody
 
+
+
 class QuizViewModel : ViewModel() {
     private val _quizCases = mutableStateOf<List<QuizCase>>(emptyList())
     val quizCases: State<List<QuizCase>> = _quizCases
+
+    var selectedDifficulty by mutableStateOf("")
+    var selectedAge by mutableStateOf("")
+
+    var selectedLanguage by mutableStateOf(value = "")
+
+    var selectedGender by mutableStateOf(value = "")
+
+    var selectedQuestionType by mutableStateOf(value = "")
+
+    var selectedSubjectMastery by mutableStateOf(value = "")
+
+    var subject by mutableStateOf(value = "")
+
+    var role by mutableStateOf(value = "")
 
     private val _isLoading = mutableStateOf(false)
     val isLoading: State<Boolean> = _isLoading
@@ -30,6 +47,7 @@ class QuizViewModel : ViewModel() {
         val sessionResponse = RetrofitClient.apiService.startSession()
         if (sessionResponse.isSuccessful) {
             Log.d("QUIZ_DEBUG", "Session started.")
+
             val requestBody = buildRequestBody()
             Log.d("QUIZ_DEBUG", "Sending request body: ${requestBody}")
             val quizResponse = RetrofitClient.apiService.getQuestions(requestBody)
@@ -49,17 +67,18 @@ class QuizViewModel : ViewModel() {
         val requestJson = """
         {
           "language": "en",
-          "age": 12,
-          "subject": "math",
-          "difficulty": "easy",
+          "age": ${selectedAge.toIntOrNull() ?: 12},
+          "subject": "${subject}",
+          "difficulty": "${selectedDifficulty}",
           "question_type": "behavioral",
           "sub_type": "peer",
-          "role": "student",
-          "sex": "female",
-          "allow_image": true,
+          "role": "${role}",
+          "sex": "$selectedGender",
+          "allow_image": false,
           "answers": {}
         }
-        """
+        """.trimIndent()
+        Log.d("QUIZ_DEBUG", "Request JSON: $requestJson")
         return requestJson.toRequestBody("application/json".toMediaTypeOrNull())
     }
 }
